@@ -9,10 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tensorflow-models/coco-ssd": "^2.2.2",
+    "@tensorflow/tfjs": "^4.7.0",
+    "axios": "^1.4.0",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.5",
+    "formidable": "^2.1.1",
+    "multer": "^1.4.5-lts.1",
+    "multiparty": "^4.2.3",
     "next": "13.4.5",
+    "next-connect": "^1.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "yup": "^1.2.0"
   }
 }
