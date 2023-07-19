@@ -28,7 +28,7 @@ function Index() {
 					withCredentials: false
 				};
 				const res = await axios.post(
-					"http://127.0.0.1:5000/upload",
+					"https://weldingdefect.onrender.com/upload",
 					formData,
 					config
 				);
