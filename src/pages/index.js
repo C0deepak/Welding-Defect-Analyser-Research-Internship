@@ -67,6 +67,11 @@ function Index() {
 						<input
 							onChange={(e) => {
 								setImg2(e.target.files[0]);
+								const reader = new FileReader();
+								reader.readAsDataURL(e.target.files[0]);
+								reader.onloadend = () => {
+									setImg(reader.result);
+								};
 							}}
 							name="img"
 							accept="image/*"
@@ -77,7 +82,7 @@ function Index() {
 						</button>
 					</div>
 				</form>
-				{img ? <img width={"1200px"} src={img} alt="image" /> : ""}
+				{img ? <img height={"500px"} src={img} alt="image" /> : ""}
 
 				{isLoading ? <h3>Loading...</h3> : ""}
 				{errMsg ? <h3>{errMsg}</h3> : ""}
