@@ -2,11 +2,14 @@ import Head from "next/head";
 import axios from "axios";
 import { useState } from "react";
 import { Image } from "next/image";
+import styles from '../styles/main.module.css'
+import { FaUpload } from 'react-icons/fa'
 
 function Index() {
 	const [errMsg, setErrMsg] = useState("");
 	const [img, setImg] = useState(null);
 	const [img2, setImg2] = useState(null);
+	const [imgName, setImgName] = useState('Choose Image For Defect Detection')
 	const [isLoading, setIsLoading] = useState(false);
 
 	const handleSubmit = async (e) => {
@@ -58,14 +61,15 @@ function Index() {
 			<Head>
 				<title>Welding Defect Analyser</title>
 			</Head>
-			<div className="a">
+			<div className={styles.mainPage}>
 				<h1>Welding Defect Analyser</h1>
-				<div className="heading">Upload Image</div>
-				<form encType="multipart/form-data" className="form">
-					<div className="file">
+				<div className={styles.heading}>Upload Image</div>
+				<form encType="multipart/form-data" className={styles.form}>
+					<div className={styles.inputBox}>
 						<input
 							onChange={(e) => {
 								setImg2(e.target.files[0]);
+								setImgName(e.target.files[0].name);
 								const reader = new FileReader();
 								reader.readAsDataURL(e.target.files[0]);
 								reader.onloadend = () => {
@@ -75,13 +79,16 @@ function Index() {
 							name="img"
 							accept="image/*"
 							type="file"
+							id="chooseImg"
 						/>
-						<button disabled={isLoading} onClick={(e) => handleSubmit(e)}>
-							Detect
-						</button>
+						<label for="chooseImg" className={styles.styleFile}><FaUpload />{imgName}</label>
 					</div>
+
+					<button disabled={isLoading} onClick={(e) => handleSubmit(e)}>
+						Detect
+					</button>
 				</form>
-				{img ? <img height={"500px"} src={img} alt="image" /> : ""}
+				{img ? <img className={styles.imageToDetect} src={img} alt="image" /> : ""}
 
 				{isLoading ? <h3>Loading...</h3> : ""}
 				{errMsg ? <h3>{errMsg}</h3> : ""}
